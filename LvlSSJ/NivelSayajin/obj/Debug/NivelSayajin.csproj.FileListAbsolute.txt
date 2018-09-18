@@ -1,0 +1,7 @@
+C:\Users\Natasha\Desktop\LvlSayajin\NivelSayajin\NivelSayajin\obj\Debug\NivelSayajin.csprojAssemblyReference.cache
+C:\Users\Natasha\Desktop\LvlSayajin\NivelSayajin\NivelSayajin\obj\Debug\NivelSayajin.csproj.CoreCompileInputs.cache
+C:\Users\Natasha\Desktop\LvlSayajin\NivelSayajin\NivelSayajin\bin\Debug\NivelSayajin.exe.config
+C:\Users\Natasha\Desktop\LvlSayajin\NivelSayajin\NivelSayajin\bin\Debug\NivelSayajin.exe
+C:\Users\Natasha\Desktop\LvlSayajin\NivelSayajin\NivelSayajin\bin\Debug\NivelSayajin.pdb
+C:\Users\Natasha\Desktop\LvlSayajin\NivelSayajin\NivelSayajin\obj\Debug\NivelSayajin.exe
+C:\Users\Natasha\Desktop\LvlSayajin\NivelSayajin\NivelSayajin\obj\Debug\NivelSayajin.pdb
