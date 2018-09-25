@@ -5,12 +5,16 @@ using UnityEngine;
 public class PivotRotation2D : EntityMovement2D {
 
     public Vector2 pivotDirection;
-    public float pivotDistance;
+    public float pivotDistance = 1f;
+    private Vector2 currentPivotDirection;
 
-    public Vector3 pivotPosition { get { return transform.position + ((Vector3)pivotDirection * pivotDistance); }}
+    public Vector3 pivotPosition;
+
 
 	// Use this for initialization
 	void Start () {
+    currentPivotDirection = pivotDirection;
+        pivotPosition = transform.position + ((Vector3) currentPivotDirection * pivotDistance);
 		
 	}
 
