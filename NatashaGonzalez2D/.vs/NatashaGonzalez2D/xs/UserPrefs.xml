@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{9B72A654-2743-8C89-9084-7145F3AE1751}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CamControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MovimientoContinuo2D.cs">
     <Files>
       <File FileName="Assets/Scripts/EntityMovement2D.cs" Line="13" Column="3" />
-      <File FileName="Assets/Scripts/MovimientoContinuo2D.cs" Line="32" Column="39" />
+      <File FileName="Assets/Scripts/MovimientoContinuo2D.cs" Line="32" Column="48" />
       <File FileName="Assets/Scripts/PingPongMovement2D.cs" Line="26" Column="2" />
       <File FileName="Assets/Scripts/TestCollisionAndRays.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Utilities2D.cs" Line="13" Column="1" />

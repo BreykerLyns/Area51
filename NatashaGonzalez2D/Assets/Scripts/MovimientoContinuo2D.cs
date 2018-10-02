@@ -29,7 +29,7 @@ public class MovimientoContinuo2D : MonoBehaviour {
         if (other.CompareTag("Barrel")){
             Debug.Log ("Chocaste!");
         } else if (other.CompareTag("CamArea")) {
-            Camera.main.GetComponent<CamControl
+            Camera.main.GetComponent <CamControl
         }
     }
 
