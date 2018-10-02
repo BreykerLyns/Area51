@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CollectableObject : MonoBehaviour {
-
+    
     public float points;
 
     public void Collect(){
