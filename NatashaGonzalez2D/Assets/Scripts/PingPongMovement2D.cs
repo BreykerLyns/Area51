@@ -9,18 +9,18 @@ public class PingPongMovement2D : EntityMovement2D {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-    protected override void Update () {
         
+	}
+
+    protected override void Update () {
+
         //Logica PingPong
         currentDistance += movement.magnitude;
         if (currentDistance >= distance) {
-            direction *= - 1;
+            direction *= -1;
             currentDistance = 0;
         }
 
-        base.Update();
-	}
+        base.Update ();
+    }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Utilities2D {
 
-    [System.Serializable]
+	[System.Serializable]
     public struct AxisPair {
         public KeyCode keyCode;
         public Vector3 direction;
-	}
+    }
 }
