@@ -14,6 +14,7 @@ public class EntityPhysicsMov2D : MonoBehaviour {
     void Reset() {
         rb2D = GetComponent<Rigidbody2D> ();
         rb2D.gravityScale = 0;
+        rb2D.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 	
     protected virtual void FixedUpdate() {
