@@ -1,23 +1,18 @@
 ﻿<Properties StartupConfiguration="{9B72A654-2743-8C89-9084-7145F3AE1751}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CollectableObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TopDownProject/Scripts/Movement/MovimientoContinuo2D.cs">
     <Files>
-      <File FileName="Assets/Scripts/EntityMovement2D.cs" Line="13" Column="3" />
-      <File FileName="Assets/Scripts/MovimientoContinuo2D.cs" Line="17" Column="18" />
-      <File FileName="Assets/Scripts/PingPongMovement2D.cs" Line="26" Column="2" />
-      <File FileName="Assets/Scripts/TestCollisionAndRays.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Utilities2D.cs" Line="13" Column="1" />
-      <File FileName="Assets/Scripts/PivotRotation2D.cs" Line="26" Column="1" />
-      <File FileName="Assets/Scripts/CamControl.cs" Line="12" Column="30" />
-      <File FileName="Assets/Scripts/CollectableObject.cs" Line="14" Column="1" />
-      <File FileName="Assets/Scripts/MovimientoInstantaneo2D.cs" Line="20" Column="28" />
+      <File FileName="Assets/TopDownProject/Scripts/Movement/Physics/EntityPhysicsMov2D.cs" Line="17" Column="66" />
+      <File FileName="Assets/TopDownProject/Scripts/Movement/EntityMovement2D.cs" Line="18" Column="40" />
+      <File FileName="Assets/TopDownProject/Scripts/Movement/PingPongMovement2D.cs" Line="17" Column="1" />
+      <File FileName="Assets/TopDownProject/Scripts/Movement/Physics/PingPongPhysics2D.cs" Line="14" Column="13" />
+      <File FileName="Assets/TopDownProject/Scripts/Movement/Physics/ContinousPhysicsMov2D.cs" Line="1" Column="1" />
+      <File FileName="Assets/TopDownProject/Scripts/Movement/MovimientoContinuo2D.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <RunToCursorBreakpoint file="/Users/alumno/Documents/Area51/NatashaGonzalez2D/Assets/Scripts/MovimientoContinuo2D.cs" relfile="Assets/Scripts/MovimientoContinuo2D.cs" line="33" column="10" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
