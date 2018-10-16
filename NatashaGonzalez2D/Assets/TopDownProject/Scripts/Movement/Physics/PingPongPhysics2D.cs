@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PingPongPhysics2D : MonoBehaviour {
-    
+public class PingPongPhysics2D : EntityPhysicsMov2D {
+
     public float distance = 1;
     private float currentDistance;
-	
-	// Update is called once per frame
-	void Update () {
-        protected override void Update() {
-        currentDistance += movement.magnitude;
 
+    // Update is called once per frame
+    protected override void FixedUpdate () {
+        currentDistance += movement.magnitude;
         //Logica PingPong
-        if (currentDistance >= distance)
-        {
-            float delta = totalMovement - distance;
-            transform.Translate(direction.normalized * delta);
+        if (currentDistance >= distance) {
             direction *= -1;
             currentDistance = 0;
-        } else {
-            base.Update();
-	}
+        }
+
+        base.FixedUpdate ();
+    }
 }
