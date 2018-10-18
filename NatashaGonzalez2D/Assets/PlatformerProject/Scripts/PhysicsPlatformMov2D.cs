@@ -63,7 +63,7 @@ public class PhysicsPlatformMov2D : MonoBehaviour {
         if (movement.x > 0) { rend.flipX = false; }
         else if (movement.x < 0 && !rend.flipX) { rend.flipX = true; }
 
-        animator.SetBool (("IsMoving", movement.x != 0) && grounded);
+        animator.SetBool ("IsMoving", movement.x != 0) && grounded);
                  
         movement = movement.normalized * speed.x * Time.fixedDeltaTime;
         movement.y = speed.y * Time.fixedDeltaTime;
