@@ -9,6 +9,7 @@ public class ContinousPhysicsMov2D : MonoBehaviour {
     public float speed;
     public List<AxisPair> axes;
     public Rigidbody2D rb2D;
+    public Animator animator;
 
     void Reset () {
         rb2D = GetComponent<Rigidbody2D> ();
@@ -29,10 +30,15 @@ public class ContinousPhysicsMov2D : MonoBehaviour {
                 movement += axes[i].direction;
             }
         }
+        if (movement != Vector3.zero) {
+            animator.SetBool ("Moving", true);
+            animator.SetFloat ("Horizontal", movement.x);
+            animator.SetFloat ("Vertical", movement.y);   
+        } else {
+            animator.SetBool ("Moving", false);
+        }
 
         movement = movement.normalized * speed * Time.fixedDeltaTime;
-        if (movement.x > 0) { GetComponent<SpriteRenderer> ().flipX = false; }
-        else if (movement.x < 0) { GetComponent<SpriteRenderer> ().flipX = true; }
         rb2D.MovePosition (transform.position + movement);
 	}
 }
