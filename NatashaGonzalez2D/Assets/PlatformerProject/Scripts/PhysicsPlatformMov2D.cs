@@ -11,7 +11,7 @@ public class PhysicsPlatformMov2D : MonoBehaviour {
     public List<AxisPair> axes;
     public Rigidbody2D rb2D;
     public Collider2D col2D;
-    public float gravity = 8;
+    public float gravity = 8f;
     public float jumpForce = 7f;
     public bool grounded;
 
@@ -21,7 +21,7 @@ public class PhysicsPlatformMov2D : MonoBehaviour {
     const float margin = 0.01f;
     const float minDistance = 0.1f;
     public Vector2 pointLeft { get { return rb2D.position + distanceLeft; }}
-    public Vector2 pointRight { get { return rb2D.position + distanceRight; }}
+    public Vector2 pointRight { get { return rb2D.position + distanceRight; } }
 
     void Reset () {
         rb2D = GetComponent<Rigidbody2D> ();
@@ -46,8 +46,8 @@ public class PhysicsPlatformMov2D : MonoBehaviour {
             }
         }
 
-        if (grounded && Input.GetKey(KeyCode.Space)){
-            Debug.Log("grounded");
+        if (grounded && Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log ("Jumping");
             speed.y = jumpForce;
         }
 	}
@@ -57,35 +57,34 @@ public class PhysicsPlatformMov2D : MonoBehaviour {
             speed.y -= gravity * Time.fixedDeltaTime;
         }
 
-        GroundCheck();
+        GroundCheck ();
 
-        SpriteRenderer rend = GetComponent<SpriteRenderer>();
-        if (movement.x > 0) { rend.flipX = false; }
+        SpriteRenderer rend = GetComponent<SpriteRenderer> ();
+        if (movement.x > 0 && rend.flipX) { rend.flipX = false; } 
         else if (movement.x < 0 && !rend.flipX) { rend.flipX = true; }
 
-        animator.SetBool ("IsMoving", movement.x != 0) && grounded);
-                 
+        animator.SetBool ("IsMoving", (movement.x != 0) && grounded);
+
         movement = movement.normalized * speed.x * Time.fixedDeltaTime;
         movement.y = speed.y * Time.fixedDeltaTime;
         rb2D.MovePosition (transform.position + movement);
     }
 
-    void OnDrawGizmos() {
+    void OnDrawGizmos () {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(pointLeft, Vector3.down * minDistance);
-        Gizmos.DrawRay(pointRight, Vector3.down * minDistance);
-
+        Gizmos.DrawRay (pointLeft, Vector3.down * minDistance);
+        Gizmos.DrawRay (pointRight, Vector3.down * minDistance);
     }
 
-    void GroundCheck() { 
+    void GroundCheck () {
         Vector2[] points = { pointLeft, pointRight };
         RaycastHit2D[] hits2D = new RaycastHit2D[points.Length];
         grounded = false;
         for (int i = 0; i < points.Length; i++) {
-            hits2D[i] = Physics2D.Raycast(points[i], Vector3.down, minDistance);
+            hits2D[i] = Physics2D.Raycast (points[i], Vector3.down, minDistance);
             if (hits2D[i]) {
-                Debug.Log(hits2D[i].collider.name);
-                if (speed.y < 0) {
+                Debug.Log (hits2D[i].collider.name);
+                if (speed.y < 0) { 
                     transform.position = (transform.position + (Vector3.down * minDistance));
                     speed.y = 0;
                 }
