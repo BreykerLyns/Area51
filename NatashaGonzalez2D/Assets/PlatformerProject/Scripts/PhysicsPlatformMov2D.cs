@@ -84,9 +84,11 @@ public class PhysicsPlatformMov2D : MonoBehaviour {
             hits2D[i] = Physics2D.Raycast (points[i], Vector3.down, minDistance);
             if (hits2D[i]) {
                 Debug.Log (hits2D[i].collider.name);
+                PlatformBehaviour behaviour = hits2D[i].collider.GetComponent<PlatformBehaviour>();
                 if (speed.y < 0) { 
                     transform.position = (transform.position + (Vector3.down * minDistance));
                     speed.y = 0;
+                    if (behaviour != null) { behaviour.OnPlatformStep(gameObject); }
                 }
                 grounded = true;
                 break;

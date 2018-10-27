@@ -10,19 +10,18 @@ public class CamDirectionView : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        mouseScript = targetEntity.GetComponent<MouseTargetBehaviour>();
+        mouseScript = targetEntity.GetComponent<MouseTargetBehaviour> ();
+	}
+	
+	// Update is called once per frame
+	void LateUpdate () {
+        //Vector3 targetPos = new Vector3 (targetEntity.position.x, targetEntity.position.y, transform.position.z);
+        Vector3 point = targetEntity.position + (mouseScript.direction * 2f);
+        Vector3 targetPos = new Vector3 (point.x, targetEntity.position.y, transform.position.z);
+        MoveToTarget (targetPos);
 	}
 
-    // Update is called once per frame
-    void LateUpdate() {
-        //vector3 targetPos = new Vector3
-        Vector3 point = targetEntity.position + (mouseScript.direction * 5f);
-        Vector3 targetPos = new Vector3(point.x, point.y, transform.position.z);
-        MoveToTarget(targetPos);
+    void MoveToTarget (Vector3 target) {
+        transform.position = Vector3.MoveTowards (transform.position, target, (moveSpeed + mouseScript.distanceDelta) * Time.deltaTime);
     }
-		
-        void MovetoTarget (Vector3 target) {
-            
-        }
-	}
 }

@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class ButtonActions : MonoBehaviour {
 
-    public void LoadScene(int index) {
-        SceneManager.LoadScene(index);
+    public void LoadScene (int index) {
+        SceneManager.LoadScene (index);
     }
 
-        public void QuitGame() {
+    public void QuitGame () {
 #if UNITY_EDITOR
-    UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Aplication.Quit();
+        Application.Quit ();
 #endif
     }
 }
