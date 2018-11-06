@@ -162,7 +162,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  targetTime: 0
 --- !u!114 &114415368639862886
 MonoBehaviour:
   m_ObjectHideFlags: 1

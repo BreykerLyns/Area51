@@ -18,9 +18,11 @@ public class DecayPlatform : PlatformBehaviour {
 				if (platformCol.enabled) {
 					platformCol.enabled = false;
 					currentValue = 0;
+                    GetComponent<SpriteRenderer>().color = Color.gray;
 				} else {
 					platformCol.enabled = true;
 					isActive = false;
+                    GetComponent<SpriteRenderer>().color = Color.white;
 				}
 			}
 		}

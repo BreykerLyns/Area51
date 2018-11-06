@@ -15,7 +15,12 @@ public class PhysicsPlatformMov2D : MonoBehaviour {
     public float jumpForce = 7f;
     public bool grounded;
 
+    public Collider2D attackOrigin;
+    const float attackDistance = 0.75f;
+    bool isAttack;
+
     Vector3 movement;
+    float lastDir;
     Vector2 distanceLeft;
     Vector2 distanceRight;
     const float margin = 0.01f;
@@ -32,9 +37,9 @@ public class PhysicsPlatformMov2D : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         distanceLeft.x = -(col2D.bounds.extents.x - margin);
-        distanceLeft.y = -col2D.bounds.extents.y;
+        //distanceLeft.y = -col2D.bounds.extents.y;
         distanceRight.x = col2D.bounds.extents.x - margin;
-        distanceRight.y = -col2D.bounds.extents.y;
+        //distanceRight.y = -col2D.bounds.extents.y;
 	}
 	
 	// Update is called once per frame
@@ -60,10 +65,21 @@ public class PhysicsPlatformMov2D : MonoBehaviour {
         GroundCheck ();
 
         SpriteRenderer rend = GetComponent<SpriteRenderer> ();
-        if (movement.x > 0 && rend.flipX) { rend.flipX = false; } 
-        else if (movement.x < 0 && !rend.flipX) { rend.flipX = true; }
+        if (movement.x > 0 && rend.flipX) { rend.flipX = false; lastDir = 1f; } 
+        else if (movement.x < 0 && !rend.flipX) { rend.flipX = true; lastDir = -1f; }
 
         animator.SetBool ("IsMoving", (movement.x != 0) && grounded);
+
+        if (grounded && Input.GetKeyDown(KeyCode.K)) {
+            animator.SetTrigger("Attack");
+            Vector3 temp = attackOrigin.transform.localPosition;
+            temp.x = attackDistance * lastDir;
+            attackOrigin.transform.localPosition = temp;
+            attackOrigin.enabled = true;
+            isAttack = true;
+        }
+
+        if (isAttack) { movement.x = 0; }
 
         movement = movement.normalized * speed.x * Time.fixedDeltaTime;
         movement.y = speed.y * Time.fixedDeltaTime;
@@ -94,5 +110,10 @@ public class PhysicsPlatformMov2D : MonoBehaviour {
                 break;
             }
         }
+    }
+
+    void OnAttackEnd () {
+        attackOrigin.enabled = false;
+        isAttack = false;
     }
 }
