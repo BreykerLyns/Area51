@@ -1,13 +1,16 @@
 ﻿<Properties StartupConfiguration="{B3E1564C-B31A-CB0B-8718-B42897F771B8}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CharacterBaseMov3D.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CamBehaviour.cs">
     <Files>
-      <File FileName="Assets/Scripts/CharacterBaseMov3D.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CharacterBaseMov3D.cs" Line="42" Column="1" />
+      <File FileName="Assets/Scripts/CamBehaviour.cs" Line="67" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <RunToCursorBreakpoint file="/Users/alumno/Documents/GitHub/Area51/NatashaGonzalez3D/Assets/Scripts/CamBehaviour.cs" relfile="Assets/Scripts/CamBehaviour.cs" line="13" column="18" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />

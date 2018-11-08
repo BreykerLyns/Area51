@@ -1,0 +1,2 @@
+/Users/alumno/Documents/GitHub/Area51/NatashaGonzalez3D/obj/Debug/Assembly-CSharp.csprojResolveAssemblyReference.cache
+/Users/alumno/Documents/GitHub/Area51/NatashaGonzalez3D/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache
