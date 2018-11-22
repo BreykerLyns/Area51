@@ -21,4 +21,14 @@ namespace EntityData.StructLib {
             minFollowSpeed = minSpeed;
         }
     }
+
+    public struct GroundData {
+        public Collider collider;
+        public float incNormalized;
+
+        public GroundData (Collider collider, float incNormalized) {
+            this.collider = collider;
+            this.incNormalized = incNormalized;
+        }
+    }
 }
