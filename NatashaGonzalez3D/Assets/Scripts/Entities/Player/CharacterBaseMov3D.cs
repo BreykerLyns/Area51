@@ -18,6 +18,7 @@ public class CharacterBaseMov3D : MonoBehaviour
 
     public bool grounded = false;
     List<Collider> groundCollection;
+    Activator currentActivator;
     //List<GroundData> groundCollection;
 
 	// Use this for initialization
@@ -32,7 +33,7 @@ public class CharacterBaseMov3D : MonoBehaviour
         if (grounded && Input.GetKeyDown(KeyCode.Space)) {
             //Set velocity Y to zero for consistent jump height
             rigBod.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-        }
+        } else if
         if (rigBod.velocity.x != 0 || rigBod.velocity.z != 0) {
             Vector3 temp = rigBod.velocity;
             temp.x = Mathf.MoveTowards(temp.x, 0, 2f * Time.deltaTime);
@@ -96,11 +97,16 @@ public class CharacterBaseMov3D : MonoBehaviour
                 grounded = false;
         }
     }
+	void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Activator")){
+            currentActivator = other.GetComponent<Activator>();
+        }
+	}
 
 	void OnTriggerExit (Collider other) {
         if (other.CompareTag("GameArea")) {
             Respawn();
-        }
+        } else  if (other.CompareTag()
 	}
 	void OnDrawGizmos () {
         Gizmos.color = Color.red;
