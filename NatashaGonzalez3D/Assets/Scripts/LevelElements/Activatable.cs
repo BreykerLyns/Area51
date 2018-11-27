@@ -1,0 +1,18 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Activatable : MonoBehaviour {
+
+    public virtual void OnStart (){ 
+    
+    }
+
+    public virtual void OnActive (){
+        
+    }
+
+    public virtual void OnEnd (){
+        
+    }
+}
