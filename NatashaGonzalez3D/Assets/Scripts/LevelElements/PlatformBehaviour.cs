@@ -10,23 +10,56 @@ public class PlatformBehaviour : Activatable {
 
     public float speed;
 
-    public Vector3 currentMomentum { get { return (currentTarget - transform.position).normalized * speed; }}
+    public Vector3 currentMomentum { get { return (currentTarget - transform.position).normalized * speed; } }
+
+    Color defaultColor;
+    Renderer rend;
+    float intensityDropValue = 0.3f;
 
 	// Use this for initialization
 	void Start () {
         startPoint = transform.position;
         currentTarget = targetPoint;
+
+        SetRenderValues();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        if (transform.position == currentTarget){
+    void SetRenderValues(){
+        if (!rend && (rend = GetComponent<Renderer>())){
+            defaultColor = rend.material.color;
+        }
+        rend.material.color = activated ? defaultColor : (Color)Color32.Lerp(defaultColor, Color.black, intensityDropValue);
+    }
+
+    // Update is called once per frame
+    void Update() {
+        if (activated) {
+            OnActive();
+        }
+    }
+
+	public override void OnStart() {
+        activated = true;
+        SetRenderValues();
+
+	}
+	public override void OnActive() {
+        if (transform.position == currentTarget)
+        {
             currentTarget = (currentTarget == targetPoint) ? startPoint : targetPoint;
         }
+
         transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+    }
+
+	public override void OnEnd() {
+        if (!activated){
+            activaded = false;
+            SetRenderValues();
+        }
 	}
 
-	void OnDrawGizmos() {
+	void OnDrawGizmos () {
         Gizmos.color = Color.blue;
         Gizmos.DrawCube(startPoint, Vector3.one * 0.25f);
         Gizmos.DrawCube(targetPoint, Vector3.one * 0.25f);

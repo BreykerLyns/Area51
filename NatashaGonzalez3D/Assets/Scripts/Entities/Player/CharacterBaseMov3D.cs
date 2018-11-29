@@ -33,7 +33,9 @@ public class CharacterBaseMov3D : MonoBehaviour
         if (grounded && Input.GetKeyDown(KeyCode.Space)) {
             //Set velocity Y to zero for consistent jump height
             rigBod.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-        } else if
+        } else if (currentActivator && Input.GetKeyDown(KeyCode.E)) {
+            currentActivator.Use();
+        }
         if (rigBod.velocity.x != 0 || rigBod.velocity.z != 0) {
             Vector3 temp = rigBod.velocity;
             temp.x = Mathf.MoveTowards(temp.x, 0, 2f * Time.deltaTime);
@@ -75,9 +77,9 @@ public class CharacterBaseMov3D : MonoBehaviour
                 if ((inclination = Vector3.Dot(contact.normal, Vector3.up)) > 0.85f) {
                     grounded = true;
                     groundCollection.Add(collision.collider);
-                if (collision.collider.CompareTag("MovingPlatform")) {
-                    transform.SetParent(collision.transform);
-                }
+                    if (collision.collider.CompareTag("MovingPlatform")) {
+                        transform.SetParent(collision.transform);
+                    }
                     break;
                 }
             }
@@ -93,20 +95,21 @@ public class CharacterBaseMov3D : MonoBehaviour
                 rigBod.AddForce(exitMomentum, ForceMode.VelocityChange);
             }
         }
-            if (groundCollection.Count == 0) {
-                grounded = false;
+        if (groundCollection.Count == 0) {
+            grounded = false;
         }
     }
-	void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Activator")){
+	void OnTriggerEnter (Collider other) {
+        if (other.CompareTag("Activator")) {
             currentActivator = other.GetComponent<Activator>();
         }
 	}
-
 	void OnTriggerExit (Collider other) {
         if (other.CompareTag("GameArea")) {
             Respawn();
-        } else  if (other.CompareTag()
+        } else if (other.CompareTag("Activator")) {
+            currentActivator = null;
+        }
 	}
 	void OnDrawGizmos () {
         Gizmos.color = Color.red;

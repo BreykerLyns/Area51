@@ -3,16 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Activator : MonoBehaviour {
+    
+    public Activatable target;
 
-    public override bool Use() {
+	void Awake() {
+        if (target) { target.LinkActivator(this); }
+	}
+
+	public virtual bool Use () {
+        Debug.Log("Calling Use on Activator");
         return false;
     }
 
-    public virtual void ActivateStart (Activatable activatable) {
+    protected virtual void ActivateStart (Activatable activatable) {
         Debug.Log("Process Started Sent");
     }
 
-    public virtual void ActivateEnd(Activatable activatable) {
-        Debug.Log("Process Started Sent");
+    protected virtual void ActivateEnd(Activatable activatable, bool recall = true)
+    {
+        Debug.Log("Process Ending Sent");
+        activatable.OnEnd();
+        if (recall){
+            Activators[] activators = activatable.LinkActivator();
+            foreach (Activator activator in activators){
+                if (activator != this) { activator.ActivateEnd(activatable, false); }
+            }
+            }
     }
 }
