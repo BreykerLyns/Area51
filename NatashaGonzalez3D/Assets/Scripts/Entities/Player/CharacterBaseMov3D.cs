@@ -58,11 +58,27 @@ public class CharacterBaseMov3D : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     void FixedUpdate() {
         float verticalMagnitude = 0, angularMagnitude = 0;
         if (inputEnable) {
             float verticalMagnitude = Input.GetAxis("Vertical");
             float angularMagnitude = Input.GetAxis("Horizontal");
+=======
+	void Update () {
+        if (grounded && Input.GetKeyDown(KeyCode.Space)) {
+            //Set velocity Y to zero for consistent jump height
+            rigBod.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        } else if (currentActivator && Input.GetKeyDown(KeyCode.E)) {
+            currentActivator.Use();
+        }
+        if (rigBod.velocity.x != 0 || rigBod.velocity.z != 0) {
+            Vector3 temp = rigBod.velocity;
+            temp.x = Mathf.MoveTowards(temp.x, 0, 2f * Time.deltaTime);
+            temp.z = Mathf.MoveTowards(temp.z, 0, 2f * Time.deltaTime);
+            rigBod.velocity = temp;
+            Debug.Log(rigBod.velocity);
+>>>>>>> 37f239c62afbb390e04c4d32f13bf83178a55653
         }
     }
 
@@ -122,7 +138,10 @@ public class CharacterBaseMov3D : MonoBehaviour
         }
         if (groundCollection.Count == 0) {
             grounded = false;
+<<<<<<< HEAD
             playerAnimator.SetBool("Grounded", grounded);
+=======
+>>>>>>> 37f239c62afbb390e04c4d32f13bf83178a55653
         }
     }
 	void OnTriggerEnter (Collider other) {
