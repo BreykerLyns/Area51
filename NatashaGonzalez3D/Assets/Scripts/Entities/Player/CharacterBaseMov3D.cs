@@ -17,36 +17,59 @@ public class CharacterBaseMov3D : MonoBehaviour
     public float jumpForce = 10f;
 
     public bool grounded = false;
+    public bool inputEnable = true;
     List<Collider> groundCollection;
     Activator currentActivator;
     //List<GroundData> groundCollection;
 
-	// Use this for initialization
-	void Start () {
+    Animator playerAnimator;
+
+    // Use this for initialization
+    void Start()
+    {
         groundCollection = new List<Collider>();
         rigBod = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
         respawnData.position = transform.position;
         respawnData.rotation = transform.rotation;
-	}
+    }
 
-	void Update () {
-        if (grounded && Input.GetKeyDown(KeyCode.Space)) {
-            //Set velocity Y to zero for consistent jump height
-            rigBod.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-        } else if
-        if (rigBod.velocity.x != 0 || rigBod.velocity.z != 0) {
-            Vector3 temp = rigBod.velocity;
-            temp.x = Mathf.MoveTowards(temp.x, 0, 2f * Time.deltaTime);
-            temp.z = Mathf.MoveTowards(temp.z, 0, 2f * Time.deltaTime);
-            rigBod.velocity = temp;
-            Debug.Log(rigBod.velocity);
+    void Update()
+    {
+        if (inputEnable)
+        {
+            if (grounded && Input.GetKeyDown(KeyCode.Space))
+            {
+                //Set velocity Y to zero for consistent jump height
+                rigBod.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            }
+            else if (currentActivator && Input.GetKeyDown(KeyCode.E))
+            {
+                currentActivator.Use();
+            }
+            if (rigBod.velocity.x != 0 || rigBod.velocity.z != 0)
+            {
+                Vector3 temp = rigBod.velocity;
+                temp.x = Mathf.MoveTowards(temp.x, 0, 2f * Time.deltaTime);
+                temp.z = Mathf.MoveTowards(temp.z, 0, 2f * Time.deltaTime);
+                rigBod.velocity = temp;
+                Debug.Log(rigBod.velocity);
+            }
         }
-	}
+    }
 
-	void FixedUpdate () {
-        movement = transform.forward * Input.GetAxis("Vertical");
+    void FixedUpdate() {
+        float verticalMagnitude = 0, angularMagnitude = 0;
+        if (inputEnable) {
+            float verticalMagnitude = Input.GetAxis("Vertical");
+            float angularMagnitude = Input.GetAxis("Horizontal");
+        }
+    }
+
+        movement = transform.forward * verticalMagnitude;
+        playerAnimator.SetFloat("MoveSpeed", verticalMagnitude);
         rigBod.MovePosition(rigBod.position + (movement * speed * Time.fixedDeltaTime));
-        Quaternion rotation = Quaternion.Euler(Vector3.up * Input.GetAxis("Horizontal") * angSpeed * Time.fixedDeltaTime);
+        Quaternion rotation = Quaternion.Euler(Vector3.up * angularMagnitude * angSpeed * Time.fixedDeltaTime);
         rigBod.MoveRotation(rotation * rigBod.rotation);
 	}
 
@@ -62,6 +85,9 @@ public class CharacterBaseMov3D : MonoBehaviour
     public void SetRespawn (CharTransformData transformData) {
         respawnData = transformData;
     }
+    public void EnableInput (){
+        inputEnable = true;
+    }
 	/*float GetMaxInclination () {
         groundCollection.Sort((x, y) => y.incNormalized.CompareTo(x.incNormalized));
         return groundCollection.Count != 0 ? groundCollection[0].incNormalized : 0;
@@ -74,10 +100,11 @@ public class CharacterBaseMov3D : MonoBehaviour
                 float inclination;
                 if ((inclination = Vector3.Dot(contact.normal, Vector3.up)) > 0.85f) {
                     grounded = true;
+                    playerAnimator.SetBool("Grounded", grounded);
                     groundCollection.Add(collision.collider);
-                if (collision.collider.CompareTag("MovingPlatform")) {
-                    transform.SetParent(collision.transform);
-                }
+                    if (collision.collider.CompareTag("MovingPlatform")) {
+                        transform.SetParent(collision.transform);
+                    }
                     break;
                 }
             }
@@ -93,20 +120,22 @@ public class CharacterBaseMov3D : MonoBehaviour
                 rigBod.AddForce(exitMomentum, ForceMode.VelocityChange);
             }
         }
-            if (groundCollection.Count == 0) {
-                grounded = false;
+        if (groundCollection.Count == 0) {
+            grounded = false;
+            playerAnimator.SetBool("Grounded", grounded);
         }
     }
-	void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Activator")){
+	void OnTriggerEnter (Collider other) {
+        if (other.CompareTag("Activator")) {
             currentActivator = other.GetComponent<Activator>();
         }
 	}
-
 	void OnTriggerExit (Collider other) {
         if (other.CompareTag("GameArea")) {
             Respawn();
-        } else  if (other.CompareTag()
+        } else if (other.CompareTag("Activator")) {
+            currentActivator = null;
+        }
 	}
 	void OnDrawGizmos () {
         Gizmos.color = Color.red;

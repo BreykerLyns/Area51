@@ -26,8 +26,8 @@ public class CamBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        transform.position = Vector3.MoveTowards(transform.position, followPoint, (data.minFollowSpeed + followDistanceDelta) * Time.deltaTime);
         transform.LookAt(focusPoint);
+        transform.position = Vector3.MoveTowards(transform.position, followPoint, (data.minFollowSpeed + followDistanceDelta) * Time.deltaTime);
 	}
 
     Vector3 GetRelativePos (Transform relativeTarget, Vector3 distace) {

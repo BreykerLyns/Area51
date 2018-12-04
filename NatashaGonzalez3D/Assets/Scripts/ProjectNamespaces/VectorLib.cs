@@ -8,7 +8,7 @@ namespace VectorLib {
         static public Vector3 zeroY { get { return new Vector3(1, 0, 1); } }
         static public Vector3 zeroZ { get { return new Vector3(1, 1, 0); } }
 
-        static public Vector3 OneByOneProduct (Vector3 first, Vector3 second) {
+        static public Vector3 OneByOneProduct(Vector3 first, Vector3 second){
             return new Vector3(first.x * second.x, first.y * second.y, first.z * second.z);
         }
     }

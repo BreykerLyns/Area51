@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\LevelElements\Activator.cs" />
     <Compile Include="Assets\Scripts\LevelElements\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\LevelElements\PlatformBehaviour.cs" />
+    <Compile Include="Assets\Scripts\LevelElements\PressurePlate.cs" />
     <Compile Include="Assets\Scripts\LevelElements\Switch.cs" />
     <Compile Include="Assets\Scripts\ProjectNamespaces\StructLib.cs" />
     <Compile Include="Assets\Scripts\ProjectNamespaces\VectorLib.cs" />

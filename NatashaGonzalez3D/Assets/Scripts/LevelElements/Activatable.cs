@@ -2,17 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Activatable : MonoBehaviour {
+public class Activatable : MonoBehaviour
+{
 
-    public virtual void OnStart (){ 
-    
+    protected bool activated;
+    protected List<Activator> linkedActivators = new List<Activator>();
+
+    public void LinkActivator (Activator activator) {
+        linkedActivators.Add(activator);
     }
 
-    public virtual void OnActive (){
+    public Activator[] LinkedActivators (){
+        return linkedActivators.ToArray();
+    }
+
+	public virtual void OnStart () {
         
     }
 
-    public virtual void OnEnd (){
+    public virtual void OnActive () {
+        
+    }
+
+    public virtual void OnEnd () {
         
     }
 }
