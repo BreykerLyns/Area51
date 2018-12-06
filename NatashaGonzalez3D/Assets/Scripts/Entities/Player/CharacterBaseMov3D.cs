@@ -17,60 +17,32 @@ public class CharacterBaseMov3D : MonoBehaviour
     public float jumpForce = 10f;
 
     public bool grounded = false;
-    public bool inputEnable = true;
+    public bool inputEnabled = true;
     List<Collider> groundCollection;
     Activator currentActivator;
     //List<GroundData> groundCollection;
 
     Animator playerAnimator;
 
-    // Use this for initialization
-    void Start()
-    {
+	// Use this for initialization
+	void Start () {
         groundCollection = new List<Collider>();
         rigBod = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
         respawnData.position = transform.position;
         respawnData.rotation = transform.rotation;
-    }
+	}
 
-    void Update()
-    {
-        if (inputEnable)
-        {
-            if (grounded && Input.GetKeyDown(KeyCode.Space))
-            {
+	void Update () {
+        if (inputEnabled) {
+            if (grounded && Input.GetKeyDown(KeyCode.Space)) {
                 //Set velocity Y to zero for consistent jump height
                 rigBod.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-            }
-            else if (currentActivator && Input.GetKeyDown(KeyCode.E))
-            {
+            } else if (currentActivator && Input.GetKeyDown(KeyCode.E)) {
                 currentActivator.Use();
+                playerAnimator.SetTrigger("Pickup");
+                inputEnabled = false;
             }
-            if (rigBod.velocity.x != 0 || rigBod.velocity.z != 0)
-            {
-                Vector3 temp = rigBod.velocity;
-                temp.x = Mathf.MoveTowards(temp.x, 0, 2f * Time.deltaTime);
-                temp.z = Mathf.MoveTowards(temp.z, 0, 2f * Time.deltaTime);
-                rigBod.velocity = temp;
-                Debug.Log(rigBod.velocity);
-            }
-        }
-    }
-
-<<<<<<< HEAD
-    void FixedUpdate() {
-        float verticalMagnitude = 0, angularMagnitude = 0;
-        if (inputEnable) {
-            float verticalMagnitude = Input.GetAxis("Vertical");
-            float angularMagnitude = Input.GetAxis("Horizontal");
-=======
-	void Update () {
-        if (grounded && Input.GetKeyDown(KeyCode.Space)) {
-            //Set velocity Y to zero for consistent jump height
-            rigBod.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
-        } else if (currentActivator && Input.GetKeyDown(KeyCode.E)) {
-            currentActivator.Use();
         }
         if (rigBod.velocity.x != 0 || rigBod.velocity.z != 0) {
             Vector3 temp = rigBod.velocity;
@@ -78,10 +50,15 @@ public class CharacterBaseMov3D : MonoBehaviour
             temp.z = Mathf.MoveTowards(temp.z, 0, 2f * Time.deltaTime);
             rigBod.velocity = temp;
             Debug.Log(rigBod.velocity);
->>>>>>> 37f239c62afbb390e04c4d32f13bf83178a55653
         }
-    }
+	}
 
+	void FixedUpdate () {
+        float verticalMagnitude = 0, angularMagnitude = 0;
+        if (inputEnabled) {
+            verticalMagnitude = Input.GetAxis("Vertical");
+            angularMagnitude = Input.GetAxis("Horizontal");
+        }
         movement = transform.forward * verticalMagnitude;
         playerAnimator.SetFloat("MoveSpeed", verticalMagnitude);
         rigBod.MovePosition(rigBod.position + (movement * speed * Time.fixedDeltaTime));
@@ -89,7 +66,7 @@ public class CharacterBaseMov3D : MonoBehaviour
         rigBod.MoveRotation(rotation * rigBod.rotation);
 	}
 
-    void Respawn () {
+    public void Respawn () {
         rigBod.velocity = Vector3.zero;
         Reposition(respawnData);
         CamBehaviour.main.Reposition(respawnData.position + CamBehaviour.main.data.followDistance);
@@ -101,8 +78,8 @@ public class CharacterBaseMov3D : MonoBehaviour
     public void SetRespawn (CharTransformData transformData) {
         respawnData = transformData;
     }
-    public void EnableInput (){
-        inputEnable = true;
+    public void EnableInput () {
+        inputEnabled = true;
     }
 	/*float GetMaxInclination () {
         groundCollection.Sort((x, y) => y.incNormalized.CompareTo(x.incNormalized));
@@ -138,10 +115,7 @@ public class CharacterBaseMov3D : MonoBehaviour
         }
         if (groundCollection.Count == 0) {
             grounded = false;
-<<<<<<< HEAD
             playerAnimator.SetBool("Grounded", grounded);
-=======
->>>>>>> 37f239c62afbb390e04c4d32f13bf83178a55653
         }
     }
 	void OnTriggerEnter (Collider other) {
@@ -151,13 +125,14 @@ public class CharacterBaseMov3D : MonoBehaviour
 	}
 	void OnTriggerExit (Collider other) {
         if (other.CompareTag("GameArea")) {
-            Respawn();
+            inputEnabled = false;
+            GameControl.instance.StartRespawnProcess();
         } else if (other.CompareTag("Activator")) {
             currentActivator = null;
         }
 	}
 	void OnDrawGizmos () {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward);
+        Gizmos.DrawRay(transform.position + Vector3.up, transform.forward);
 	}
 }
