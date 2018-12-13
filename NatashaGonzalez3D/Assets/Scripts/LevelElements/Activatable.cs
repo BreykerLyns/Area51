@@ -17,7 +17,7 @@ public class Activatable : MonoBehaviour
     }
 
 	public virtual void OnStart () {
-        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
     }
 
     public virtual void OnActive () {

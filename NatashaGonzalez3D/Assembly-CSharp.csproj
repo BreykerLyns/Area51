@@ -62,29 +62,30 @@
     <Compile Include="Assets\Scripts\Camera\CamBehaviour.cs" />
     <Compile Include="Assets\Scripts\Camera\CustomCamArea.cs" />
     <Compile Include="Assets\Scripts\Entities\Player\CharacterBaseMov3D.cs" />
-    <Compile Include="Assets\Scripts\GameControl.cs" />
     <Compile Include="Assets\Scripts\LevelElements\Activatable.cs" />
     <Compile Include="Assets\Scripts\LevelElements\Activator.cs" />
     <Compile Include="Assets\Scripts\LevelElements\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\LevelElements\PlatformBehaviour.cs" />
     <Compile Include="Assets\Scripts\LevelElements\PressurePlate.cs" />
     <Compile Include="Assets\Scripts\LevelElements\Switch.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameControl.cs" />
+    <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\ProjectNamespaces\StructLib.cs" />
     <Compile Include="Assets\Scripts\ProjectNamespaces\VectorLib.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\CameraLogic.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\Demo.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\SimpleCharacterControl.cs" />
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>/Users/alumno/Documents/GitHub/Area51/NatashaGonzalez3D/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>/Users/alumno/Documents/GitHub/Area51/NatashaGonzalez3D/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>/Users/alumno/Documents/GitHub/Area51/NatashaGonzalez3D/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>/Users/alumno/Documents/GitHub/Area51/NatashaGonzalez3D/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/alumno/Documents/GitHub/Area51/NatashaGonzalez3D/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/Users/alumno/Documents/GitHub/Area51/NatashaGonzalez3D/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

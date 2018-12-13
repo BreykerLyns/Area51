@@ -116,6 +116,7 @@ public class CharacterBaseMov3D : MonoBehaviour
         if (groundCollection.Count == 0) {
             grounded = false;
             playerAnimator.SetBool("Grounded", grounded);
+        } else if ((other.CompareTag("LevelGoal")) {
         }
     }
 	void OnTriggerEnter (Collider other) {
@@ -130,6 +131,9 @@ public class CharacterBaseMov3D : MonoBehaviour
         } else if (other.CompareTag("Activator")) {
             currentActivator = null;
         }
+	}
+	void OnTriggerExit2D(Collider2D collision){
+		
 	}
 	void OnDrawGizmos () {
         Gizmos.color = Color.red;
