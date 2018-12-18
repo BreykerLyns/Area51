@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameControl : MonoBehaviour
-{
+public class GameControl : MonoBehaviour {
 
     static public GameControl instance;
     public CharacterBaseMov3D currentPlayer;
-    public UIManager UIManager;
-    bool inTransition;
+    public UIManager uIManager;
+    public bool inTransition { get; private set; }
 
     public int currentLevel { get { return SceneManager.GetActiveScene().buildIndex; } }
 
@@ -28,15 +27,8 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    void ChangeLevel (int targetLevel){
+    void ChangeLevel (int targetLevel) {
         SceneManager.LoadScene(targetLevel);
-
-        //Refresh current player
-        GameObject targetPlayer = GameObject.FindWithTag("Player");
-        if (targetPlayer){
-            Debug.Log("Found" + targetPlayer.name);
-            currentPlayer = targetPlayer.GetComponent<CharacterBaseMov3D>();
-        }
     }
 
     public void StartRespawnProcess () {
@@ -47,14 +39,14 @@ public class GameControl : MonoBehaviour
     }
 
     public void StartLevelChangeProcess (int index) {
-        if (!inTransition){
+        if (!inTransition) {
             StartCoroutine(LevelChangeProcess(index));
             inTransition = true;
         }
     }
 
     IEnumerator RespawnProcess () {
-        yield return UIManager.FadeProcess(currentPlayer.Respawn);
+        yield return uIManager.FadeProcess(currentPlayer.Respawn);
 
         while (!currentPlayer.grounded) {
             yield return null;
@@ -63,8 +55,8 @@ public class GameControl : MonoBehaviour
         inTransition = false;
     }
 
-    IEnumerator LevelChangeProcess() {
-        yield return UIManager.FadeProcess(ChangeLevel, index);
+    IEnumerator LevelChangeProcess (int index) {
+        yield return uIManager.FadeProcess(ChangeLevel, index);
         inTransition = false;
     }
 }

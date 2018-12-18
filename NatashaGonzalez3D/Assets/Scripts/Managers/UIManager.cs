@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour {
     public Image fadePanel;
     public float fadeSpeed = 2f;
 
-    public IEnumerator FadeProcess(Action fadeCall) {
+    public IEnumerator FadeProcess (Action fadeCall) {
         fadePanel.gameObject.SetActive(true);
         fadePanel.enabled = true;
         yield return FadeTo(1);
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour {
         yield return FadeTo(0);
     }
 
-    public IEnumerator FadeProcess(Action<int> fadeCall, int invokeParam) {
+    public IEnumerator FadeProcess (Action<int> fadeCall, int invokeParam) {
         fadePanel.gameObject.SetActive(true);
         fadePanel.enabled = true;
         yield return FadeTo(1);
@@ -27,18 +27,19 @@ public class UIManager : MonoBehaviour {
         fadeCall.Invoke(invokeParam);
         //---------------------------------------
         yield return FadeTo(0);
+    }
 
     IEnumerator FadeTo (int targetValue) {
-            while (fadePanel.color.a != targetValue)
+        while (fadePanel.color.a != targetValue)
         {
-                MoveImageAlpha(fadePanel, targetValue, fadeSpeed * Time.deltaTime);
+            MoveImageAlpha(fadePanel, targetValue, fadeSpeed * Time.deltaTime);
             yield return null;
         }
     }
 
     void MoveImageAlpha (Image image, float targetAlpha, float speed) {
-            Color color = image.color;
-            color.a = Mathf.MoveTowards(color.a, targetAlpha, speed);
-            image.color = color;
+        Color color = image.color;
+        color.a = Mathf.MoveTowards(color.a, targetAlpha, speed);
+        image.color = color;
     }
 }

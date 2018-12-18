@@ -61,15 +61,18 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CamBehaviour.cs" />
     <Compile Include="Assets\Scripts\Camera\CustomCamArea.cs" />
+    <Compile Include="Assets\Scripts\Entities\LevelTraps\PushBlock.cs" />
     <Compile Include="Assets\Scripts\Entities\Player\CharacterBaseMov3D.cs" />
     <Compile Include="Assets\Scripts\LevelElements\Activatable.cs" />
     <Compile Include="Assets\Scripts\LevelElements\Activator.cs" />
     <Compile Include="Assets\Scripts\LevelElements\Checkpoint.cs" />
+    <Compile Include="Assets\Scripts\LevelElements\LevelSelectorData.cs" />
     <Compile Include="Assets\Scripts\LevelElements\PlatformBehaviour.cs" />
     <Compile Include="Assets\Scripts\LevelElements\PressurePlate.cs" />
     <Compile Include="Assets\Scripts\LevelElements\Switch.cs" />
     <Compile Include="Assets\Scripts\Managers\GameControl.cs" />
     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\ProjectNamespaces\ProjectStatesLib.cs" />
     <Compile Include="Assets\Scripts\ProjectNamespaces\StructLib.cs" />
     <Compile Include="Assets\Scripts\ProjectNamespaces\VectorLib.cs" />
     <Compile Include="Assets\Supercyan Character Pack Free Sample\Scripts\CameraLogic.cs" />

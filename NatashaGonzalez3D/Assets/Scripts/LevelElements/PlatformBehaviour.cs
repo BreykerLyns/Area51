@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformBehaviour : Activatable {
-
+   
     Vector3 startPoint;
     Vector3 currentTarget;
     public Vector3 targetPoint;
@@ -16,10 +16,11 @@ public class PlatformBehaviour : Activatable {
     Renderer rend;
     float intensityDropValue = 0.3f;
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
         startPoint = transform.position;
         currentTarget = targetPoint;
         SetRenderValues();
+        base.Start();
 	}
 
     void SetRenderValues () {
